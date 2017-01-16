@@ -29,48 +29,14 @@ public class Main {
         List <Double> lammass = source.getMassLambda();
 
 
-        System.out.println("ВЫВОД ВЕКТОРА");
-        for (int i = 0; i < xmass.size(); i++){
-            System.out.print(xmass.get(i) + ",");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < lammass.size(); i++){
-            System.out.print(lammass.get(i) + ",");
-        }
-        System.out.println();
-
-        List<Double> vector = new ArrayList<>();
-        vector.add(10.0);
-        vector.add(10.0);
-        vector.add(10.0);
-        vector.add(10.0);
-        vector.add(10.0);
-        vector.add(10.0);
-        vector.add(10.0);
-
-
-        source.setNewVector(vector);
-
-        xmass = source.getMassX();
-        lammass = source.getMassLambda();
-
-
-        System.out.println("ВЫВОД ВЕКТОРА");
-        for (int i = 0; i < xmass.size(); i++){
-            System.out.print(xmass.get(i) + ",");
-        }
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < lammass.size(); i++){
-            System.out.print(lammass.get(i) + ",");
-        }
-        System.out.println();
 
 
 
 
         MatrixBuilder builder = new MatrixBuilder(points, fixed);
+
+        builder.createMatrixA(source);
+        builder.createVectorB(source);
 
         Gauss gauss = new Gauss(builder.createA(), builder.createB());
         gauss.solve();

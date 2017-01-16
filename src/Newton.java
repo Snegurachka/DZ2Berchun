@@ -11,6 +11,12 @@ public class Newton {
     private List<Double> x0MassX;
     private List<Double> x0MassLambda;
 
+    public List<Double> getX0MassLambda() {
+        return x0MassLambda;
+    }
+    public List<Double> getX0MassX(){
+        return x0MassX;
+    }
 
     public Newton(List<Point> points, List<FixedAxis> fixed){
         this.points = points;
@@ -18,7 +24,6 @@ public class Newton {
         source = new Source(points, fixed);
         x0MassX = source.getMassX();
         x0MassLambda = source.getMassLambda();
-
     }
 
 
@@ -29,7 +34,7 @@ public class Newton {
 
 
         do {
-            List<List<Double>> aMatrix = builder.createA();// добавить с приближением
+            List<List<Double>> aMatrix = builder.createMatrixA(source);// добавить с приближением
             bVector = builder.createB();
             Gauss gauss = new Gauss(aMatrix, bVector);
             gauss.solve();
